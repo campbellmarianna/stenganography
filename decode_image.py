@@ -24,27 +24,27 @@ def decode_image(file_location):
         # Loop over the range of y_size (`y`)
         for y in range(0, y_size):
             # print("***y:", y)
-            coordinates = x, y
+            # coordinates = x, y
             # Get RGB values from red_channel via `getpixel(x, y)`
             # r = red_channel.getpixel(coordinates)
             # print("what is red_channel.getpixel(coordinates):",
             #       red_channel.getpixel(coordinates))
-            r = red_channel.getpixel(coordinates)
+            r = red_channel.getpixel((x,y))
             # Convert red value in returned tuple to a binary string via `bin()`
-            b_red = str(bin(r))
+            b_red = bin(r)
             # print("b_red", b_red)
             # Grab the LSB (right-most value) from the binary string
-            LSB = int(b_red[-1])
+            LSB = b_red[-1]
             # print("LSB", LSB)
             # Perform a check to see if resulting LSB value is `1`
             #   Write `pixels[x, y]` to to black `(0, 0, 0)`
-            if LSB == 1:
+            if LSB == '1':
                 # print('What does the pixel look like right now:', pixels[x, y])
-                pixels[x,y] == (0, 0 , 0)
+                pixels[x,y] = (0, 0 , 0)
             # Otherwise
             #   Write `pixels[x, y]` to white `(255, 255, 255)`
             else:
-                pixels[x,y] == (255, 255, 255)
+                pixels[x,y] = (255, 255, 255)
     decoded_image.show()
     # Save the decoded image as `decoded_image.png`
     decoded_image.save("decoded_image.png")
